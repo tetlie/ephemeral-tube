@@ -28,7 +28,7 @@ export default function Home() {
   }
 
   return (
-    <div className="w-screen h-screen overflow-hidden">
+    <div className="w-screen h-svh overflow-hidden">
       <div className="h-full w-full relative overflow-hidden bg-black flex items-center justify-center">
         <iframe
           className="scale-[5] md:scale-[3.5] lg:scale-[3] pointer-events-none w-full h-full"
