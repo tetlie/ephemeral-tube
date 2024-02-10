@@ -12,7 +12,7 @@ const fetchVideos = async () => {
     // Fetch video IDs from the search endpoint
     const searchResponse = await fetch(searchUrl)
     const searchData = await searchResponse.json()
-    const videoIds = searchData.items.map((item) => item.id.videoId).join(',')
+    const videoIds = searchData.items.map((item: any) => item.id.videoId).join(',')
 
     if (!videoIds) {
       console.log('No videos found matching the criteria.')
