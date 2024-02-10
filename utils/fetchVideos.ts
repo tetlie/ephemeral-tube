@@ -1,5 +1,6 @@
 const fetchVideos = async () => {
   // const apiKey = process.env.YOUTUBE_API_KEY
+  const apiKey = ''
   const maxResults = 10
   const keyword = 'unique niche'
   const publishedAfter = '2023-01-01T00:00:00Z'
