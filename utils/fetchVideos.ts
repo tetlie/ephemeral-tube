@@ -3,7 +3,10 @@ const fetchVideos = async () => {
   const apiKey = ''
   const maxResults = 10
   const keyword = 'unique niche'
-  const publishedAfter = '2023-01-01T00:00:00Z'
+
+  const date = new Date()
+  date.setDate(date.getDate() - 1)
+  const publishedAfter = date.toISOString()
 
   // Use the search endpoint to find video IDs based on search criteria
   const searchUrl = `https://www.googleapis.com/youtube/v3/search?part=id&maxResults=${maxResults}&q=${keyword}&publishedAfter=${publishedAfter}&type=video&key=${apiKey}`
