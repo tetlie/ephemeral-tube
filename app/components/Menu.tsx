@@ -10,14 +10,14 @@ const menuVariants = {
 
 const Menu = () => (
   <motion.div
-    className="fixed top-0 left-0 p-8 w-full h-full backdrop-blur-3xl bg-black/20 z-40"
+    className="fixed top-0 left-0 py-8 w-full h-full backdrop-blur-3xl bg-black/20 z-40"
     variants={menuVariants}
     initial="hidden"
     animate="visible"
     exit="hidden"
   >
     {/* Content of your menu here */}
-    <div className="mt-8 border-t pt-8 pb-16 h-full w-full text-white text-lg overflow-scroll">
+    <div className="mt-8 border-t pt-8 mx-8 pb-16 h-full  text-white text-lg overflow-scroll">
       <div className="max-w-[750px]">
         <h1 className="text-4xl lg:text-5xl">Title</h1>
         <div className=" mt-8">

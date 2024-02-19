@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import Menu from './Menu'
 
 const videos = [
@@ -116,15 +116,29 @@ const videos = [
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isFading, setIsFading] = useState(true)
 
   const randomVideoIndex = Math.floor(Math.random() * videos.length)
   const [currentVideo, setCurrentVideo] = useState<{ id: string; title: string }>(
     videos[randomVideoIndex]
   )
 
-  const loadNewVideo = () => {
+  const loadNewVideo = async () => {
+    setIsFading(true)
+    await new Promise((resolve) => setTimeout(resolve, 500)) // Wait for 1 second
     setCurrentVideo(videos[randomVideoIndex])
+    await new Promise((resolve) => setTimeout(resolve, 750)) // Wait for 1 second
+    setIsFading(false)
   }
+
+  const removeInitialFading = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 750)) // Wait for 1 second
+    setIsFading(false)
+  }
+
+  useEffect(() => {
+    removeInitialFading()
+  }, [])
 
   return (
     <div className="w-screen h-svh overflow-hidden">
@@ -135,8 +149,15 @@ export default function Home() {
             {isMenuOpen ? 'Close' : 'Info'}
           </button>
         </div>
+        <div
+          className={`${
+            isFading ? 'opacity-100' : 'opacity-0'
+          } transition-opacity duration-1000 ease-in-out absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black z-30 text-white text-lg`}
+        >
+          Loading...
+        </div>
         <iframe
-          className="scale-[4] md:scale-[3.5] lg:scale-[3] pointer-events-none w-full h-full"
+          className={`absolute scale-[4] md:scale-[3.5] lg:scale-[3]  pointer-events-none w-full h-full`}
           src={`https://www.youtube.com/embed/${currentVideo.id}?autoplay=1&mute=1`}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
